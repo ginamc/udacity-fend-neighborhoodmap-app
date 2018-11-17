@@ -1,3 +1,20 @@
+
+## Dependencies
+- Axios (https://github.com/axios/axios)
+- create react app (https://github.com/facebook/create-react-app)
+- Foursquare API
+- Google Maps API
+
+## Resources
+- Yahya waklthru (https://www.youtube.com/playlist?list=PLgOB68PvvmWCGNn8UMTpcfQEiITzxEEA1)
+- infowindows (https://developers.google.com/maps/documentation/javascript/infowindows)
+- markers (https://developers.google.com/maps/documentation/javascript/markers)
+- Ryan Waite walkthrough & guide (https://www.youtube.com/watch?v=LvQe7xrUh7I)
+- Ryan Waite script store (https://github.com/ryanwaite28/script-store/blob/master/js/react_resolve_google_maps.js)
+- Ryan's other video (https://www.youtube.com/watch?v=5J6fs_BlVC0)
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
