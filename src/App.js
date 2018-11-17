@@ -1,4 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import axios from 'axios'
+// axios downloaded as per Yahya Elharony's walkthrough -- specified in README
+// axios used to work with Foursquare API
+
 import './App.css';
 
 class App extends Component {
@@ -17,7 +21,7 @@ class App extends Component {
 
     // integrating Google Maps API into our app
     initMap = () => {
-        const map = new window.google.maps.Map(document.getElementById('map'), {
+        var map = new window.google.maps.Map(document.getElementById('map'), {
             center: { lat: -34.397, lng: 150.644 },
             zoom: 8
         });
