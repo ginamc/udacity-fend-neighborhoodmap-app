@@ -1,28 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    // function that loads the map with my api
+    loadMap = () => {
+        loadMapScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyC0QW_gzDqHmmc48BjJrgRPRkOEi_FD4HM&callback=initMap")
+    }
+
+    // integrating Google Maps API into our app
+    initMap = () => {
+        const map = new window.google.maps.Map(document.getElementById('map'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8
+        });
+    }
+
+
+    render() {
+        return ( 
+          <main>
+            <div id = "map"></div>
+          </main>
+        );
+    }
+}
+
+
+// creating the map script function
+function loadMapScript(url) {
+    // selects the first isntances of elements with tag name of 'script'
+    var index = window.document.getElementsByTagName("script")[0]
+        // create the script tag element
+    var script = window.document.createElement("script")
+        // url is the one called in the function
+    script.src = url
+    script.async = true
+    script.defer = true
+        // inserts the script at the very beginning of our scrips to the parent, gets passed down to the child
+    index.parentNode.insertBefore(script, index)
 }
 
 export default App;
