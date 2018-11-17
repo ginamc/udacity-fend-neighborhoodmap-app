@@ -7,6 +7,11 @@ import './App.css';
 
 class App extends Component {
 
+    //setting a state
+    state = {
+      foodPlaces: []
+    }
+
     //calling our rendered map
     componentDidMount() {
       // invoking function to get places info
@@ -38,7 +43,11 @@ class App extends Component {
       axios.get(endPoint + new URLSearchParams(parameters)) 
       // when we get this information, log it (similar to 'fetch')
       .then(response => {
-        console.log(response)
+        // calling the state from above
+        // info being passed into 'foodPlaces' pulls from console in browser, looking for the data info
+        this.setState({
+          foodPlaces:response.data.response.groups[0].items
+        })
       })
       // catching errors
       .catch(error => {
