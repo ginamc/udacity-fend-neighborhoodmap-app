@@ -19,9 +19,22 @@ class App extends Component {
         window.initMap = this.initMap
     }
 
+    // retrieve places information from Foursquare
+    getPlaces = () => {
+      const endPoint = "https://api.foursquare.com/v2/venues/explore"
+      // a list of objects we need from Foursquare, inclu our api info
+      const parameters = {
+        client_id: "J4H31X3T25IDXZF3IMI3A12WNTUDKZ43MGIWNGYJLFGJFLH4",
+        client_secret: "KPDF2NV5SL4UKISN24J1KJF13Q1F20WXKYURK2I1LJ5YIYCQ",
+        query: "food",
+        near: "Bushwick, Brooklyn, NY"
+      }
+
+    }
+
     // integrating Google Maps API into our app
     initMap = () => {
-        var map = new window.google.maps.Map(document.getElementById('map'), {
+        const map = new window.google.maps.Map(document.getElementById('map'), {
             center: { lat: -34.397, lng: 150.644 },
             zoom: 8
         });
