@@ -37,6 +37,10 @@ class App extends Component {
       .then(response => {
         console.log(response)
       })
+      // catching errors
+      .catch(error => {
+        console.log("ERROR! " + error)
+      })
     }
 
    
