@@ -3,9 +3,16 @@ import './App.css';
 
 class App extends Component {
 
+    //calling our rendered map
+    componentDidMount() {
+      this.loadMap()
+    }
+
     // function that loads the map with my api
     loadMap = () => {
         loadMapScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyC0QW_gzDqHmmc48BjJrgRPRkOEi_FD4HM&callback=initMap")
+        // initializes initMap so JavaScript can read it and successfully do that callback
+        window.initMap = this.initMap
     }
 
     // integrating Google Maps API into our app
