@@ -35,8 +35,8 @@ class App extends Component {
     // integrating Google Maps API into our app
     initMap = () => {
         const map = new window.google.maps.Map(document.getElementById('map'), {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 8
+            center: {lat: 40.694428, lng: -73.921286},
+            zoom: 15
         });
     }
 
