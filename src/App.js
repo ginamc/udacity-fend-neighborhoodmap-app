@@ -29,7 +29,7 @@ class App extends Component {
         client_id: "J4H31X3T25IDXZF3IMI3A12WNTUDKZ43MGIWNGYJLFGJFLH4",
         client_secret: "KPDF2NV5SL4UKISN24J1KJF13Q1F20WXKYURK2I1LJ5YIYCQ",
         query: "food",
-        near: "Bushwick, Brooklyn, NY"
+        near: "Bushwick, Brooklyn, NY",
         v: "20182507"
       }
 
