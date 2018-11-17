@@ -16,7 +16,6 @@ class App extends Component {
     componentDidMount() {
       // invoking function to get places info
       this.getPlaces()
-      this.loadMap()
     }
 
     // function that loads the map with my api
@@ -47,7 +46,7 @@ class App extends Component {
         // info being passed into 'foodPlaces' pulls from console in browser, looking for the data info
         this.setState({
           foodPlaces:response.data.response.groups[0].items
-        })
+        }, this.loadMap())
       })
       // catching errors
       .catch(error => {
@@ -62,12 +61,16 @@ class App extends Component {
           center: {lat: 40.694428, lng: -73.921286},
           zoom: 15
       });
-      // getting our markers on the map
-      var marker = new window.google.maps.Marker({
-        position: {lat: 40.694428, lng: -73.921286},
-        map: map,
-        title: 'Hello World!'
-      })
+
+      // looping over our state (foodPlaces) to populate a bunch of markers onto the map
+      // for each place, we want to create a marker dynamically
+      this.state.foodPlaces.map(foodVenue => {
+        var marker = new window.google.maps.Marker({
+          position: {lat: foodVenue.venue.location.lat, lng: foodVenue.venue.location.lng},
+          map: map,
+          title: 'Hello World!'
+        })
+      })      
     }
 
 
