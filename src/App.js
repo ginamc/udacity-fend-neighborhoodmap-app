@@ -9,6 +9,8 @@ class App extends Component {
 
     //calling our rendered map
     componentDidMount() {
+      // invoking function to get places info
+      this.getPlaces()
       this.loadMap()
     }
 
@@ -21,13 +23,14 @@ class App extends Component {
 
     // retrieve places information from Foursquare
     getPlaces = () => {
-      const endPoint = "https://api.foursquare.com/v2/venues/explore"
+      const endPoint = "https://api.foursquare.com/v2/venues/explore?"
       // a list of objects we need from Foursquare, inclu our api info
       const parameters = {
         client_id: "J4H31X3T25IDXZF3IMI3A12WNTUDKZ43MGIWNGYJLFGJFLH4",
         client_secret: "KPDF2NV5SL4UKISN24J1KJF13Q1F20WXKYURK2I1LJ5YIYCQ",
         query: "food",
         near: "Bushwick, Brooklyn, NY"
+        v: "20182507"
       }
 
       // using axios to get Foursquare to talk to the application
