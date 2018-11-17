@@ -3,6 +3,8 @@ import axios from 'axios'
 // axios downloaded as per Yahya Elharony's walkthrough -- specified in README
 // axios used to work with Foursquare API
 
+// import { load_google_maps } from './utils'
+
 import './App.css';
 
 class App extends Component {
@@ -96,7 +98,7 @@ class App extends Component {
             <div className="map-name">
               <h1>Places to Stuff Your Face: Bushwick Edition</h1>
             </div>
-            <div id = "map"></div>
+            <div id="map"></div>
           </main>
         );
     }
