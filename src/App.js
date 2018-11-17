@@ -30,14 +30,22 @@ class App extends Component {
         near: "Bushwick, Brooklyn, NY"
       }
 
+      // using axios to get Foursquare to talk to the application
+      // passing the endPoint url and our parameter objects for info to display on click/hover/etc
+      axios.get(endPoint + new URLSearchParams(parameters)) 
+      // when we get this information, log it (similar to 'fetch')
+      .then(response => {
+        console.log(response)
+      })
     }
 
+   
     // integrating Google Maps API into our app
     initMap = () => {
-        const map = new window.google.maps.Map(document.getElementById('map'), {
-            center: {lat: 40.694428, lng: -73.921286},
-            zoom: 15
-        });
+      var map = new window.google.maps.Map(document.getElementById('map'), {
+          center: {lat: 40.694428, lng: -73.921286},
+          zoom: 15
+      });
     }
 
 
