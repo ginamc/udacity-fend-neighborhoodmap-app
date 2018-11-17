@@ -27,9 +27,9 @@ class App extends Component {
 
     // retrieve places information from Foursquare
     getPlaces = () => {
-      const endPoint = "https://api.foursquare.com/v2/venues/explore?"
+      let endPoint = "https://api.foursquare.com/v2/venues/explore?"
       // a list of objects we need from Foursquare, inclu our api info
-      const parameters = {
+      let parameters = {
         client_id: "J4H31X3T25IDXZF3IMI3A12WNTUDKZ43MGIWNGYJLFGJFLH4",
         client_secret: "KPDF2NV5SL4UKISN24J1KJF13Q1F20WXKYURK2I1LJ5YIYCQ",
         query: "food",
@@ -58,22 +58,22 @@ class App extends Component {
    
     // integrating Google Maps API into our app
     initMap = () => {
-      var map = new window.google.maps.Map(document.getElementById('map'), {
+      let map = new window.google.maps.Map(document.getElementById('map'), {
           center: {lat: 40.703177, lng: -73.923904},
           zoom: 15
       });
 
       // display the infowindow for the selected marker
-      var infowindow = new window.google.maps.InfoWindow()
+      let infowindow = new window.google.maps.InfoWindow()
 
       // looping over our state (foodPlaces) to populate a bunch of markers onto the map
       this.state.foodPlaces.map(foodVenue => {
         
         // passes venue information into a variable that's called in the infowindow
-        var contentString = `${foodVenue.venue.name}`
+        let contentString = `${foodVenue.venue.name}`
   
         // for each place, we want to create a marker dynamically
-        var marker = new window.google.maps.Marker({
+        let marker = new window.google.maps.Marker({
           position: {lat: foodVenue.venue.location.lat, lng: foodVenue.venue.location.lng},
           map: map,
           title: foodVenue.venue.name
@@ -93,6 +93,9 @@ class App extends Component {
     render() {
         return ( 
           <main>
+            <div className="map-name">
+              <h1>Places to Stuff Your Face: Bushwick Edition</h1>
+            </div>
             <div id = "map"></div>
           </main>
         );
@@ -103,9 +106,9 @@ class App extends Component {
 // creating the map script function
 function loadMapScript(url) {
     // selects the first isntances of elements with tag name of 'script'
-    var index = window.document.getElementsByTagName("script")[0]
+    let index = window.document.getElementsByTagName("script")[0]
         // create the script tag element
-    var script = window.document.createElement("script")
+    let script = window.document.createElement("script")
         // url is the one called in the function
     script.src = url
     script.async = true
