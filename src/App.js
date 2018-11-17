@@ -63,14 +63,28 @@ class App extends Component {
           zoom: 15
       });
 
+      // display the infowindow for the selected marker
+      var infowindow = new window.google.maps.InfoWindow()
+
       // looping over our state (foodPlaces) to populate a bunch of markers onto the map
-      // for each place, we want to create a marker dynamically
-      // and display the name of that place
       this.state.foodPlaces.map(foodVenue => {
+        
+        // passes venue information into a variable that's called in the infowindow
+        var contentString = `${foodVenue.venue.name}`
+  
+        // for each place, we want to create a marker dynamically
         var marker = new window.google.maps.Marker({
           position: {lat: foodVenue.venue.location.lat, lng: foodVenue.venue.location.lng},
           map: map,
           title: foodVenue.venue.name
+        })
+
+        // ties everything together in an event listener
+        marker.addListener('click', function() {
+        // change the content 
+        infowindow.setContent(contentString)
+        // on click, open the infowindow with the relevant info
+        infowindow.open(map, marker);
         })
       })      
     }
