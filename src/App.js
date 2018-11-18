@@ -78,9 +78,9 @@ class App extends Component {
         let marker = new window.google.maps.Marker({
           position: {lat: foodVenue.venue.location.lat, lng: foodVenue.venue.location.lng},
           map: map,
-          title: foodVenue.venue.name
-        })
-
+          name: foodVenue.venue.name
+        });
+        
         // ties everything together in an event listener
         marker.addListener('click', function() {
         // change the content 
@@ -99,6 +99,7 @@ class App extends Component {
               <h1>Places to Stuff Your Face: Bushwick Edition</h1>
             </div>
             <div id="map"></div>
+            <div id="sidebar"></div>
           </main>
         );
     }
