@@ -11,7 +11,7 @@ class App extends Component {
 
     //setting a state
     state = {
-      foodPlaces: []
+      foodPlaces: [],
     }
 
     //calling our rendered map
@@ -91,13 +91,17 @@ class App extends Component {
       });      
     }
 
+      // going to loop thru each marker and check that the query matches input in search bar
+    filterFood(query) {
+      console.log(query);
+    }
 
     render() {
         return ( 
           <main>
             <div id="map"></div>
             <div id="sidebar">
-              <input value={this.state.query} onChange={this.filterVenues}/>  
+              <input value={this.state.query} onChange={(e) => { this.filterFood(e.target.value) }}/>
             </div>
           </main>
         );
