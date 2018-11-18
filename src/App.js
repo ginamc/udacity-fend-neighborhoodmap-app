@@ -87,17 +87,14 @@ class App extends Component {
         infowindow.setContent(contentString)
         // on click, open the infowindow with the relevant info
         infowindow.open(map, marker);
-        })
-      })      
+        });
+      });      
     }
 
 
     render() {
         return ( 
           <main>
-            <div className="map-name">
-              <h1>Places to Stuff Your Face: Bushwick Edition</h1>
-            </div>
             <div id="map"></div>
             <div id="sidebar"></div>
           </main>
