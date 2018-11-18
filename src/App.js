@@ -12,7 +12,16 @@ class App extends Component {
     //setting a state
     state = {
       foodPlaces: [],
+      markers: [],
     }
+
+    constructor(props) {
+      super(props)
+      this.state = {
+        query:''
+      }
+    }
+    
 
     //calling our rendered map
     componentDidMount() {
@@ -97,6 +106,9 @@ class App extends Component {
     filterFood(query) {
       this.markers.forEach(marker => {
         console.log(marker);
+        marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
+        marker.setVisible(true) :
+        marker.setVisible(false)
       });
       
       this.setState({ query });
