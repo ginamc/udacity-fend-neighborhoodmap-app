@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 // axios downloaded as per Yahya Elharony's walkthrough -- specified in README
 // axios used to work with Foursquare API
 
@@ -16,7 +16,22 @@ class App extends Component {
    loadMap = () => {
     loadMapScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyC0QW_gzDqHmmc48BjJrgRPRkOEi_FD4HM&callback=initMap")
     window.initMap = this.initMap
-}
+  }
+
+  // initialize the map so we can actually see it on screen
+  // variable 'myMap' for the Map element
+    initMap = () => {
+      let myMap = window.google.maps.Map(document.getElementById('map'), {
+        center: {lat: 40.703177, lng: -73.923904},
+        zoom: 15
+      });
+
+    }
+
+
+
+
+    // RENDER THE DAMN THING
 
     render() {
         return ( 
