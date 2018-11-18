@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 // axios downloaded as per Yahya Elharony's walkthrough -- specified in README
 // axios used to work with Foursquare API
 
@@ -9,6 +9,18 @@ import './App.css';
 
 class App extends Component {
 
+  // set the state for our locations and markers
+  state = {
+    foodPlaces: [],
+    // ADD markers: [],
+  }
+
+
+  // call our rendered map once the component mounts
+  // invoke the function to get our food places
+  componentDidMount() {
+    this.getFood()
+  }
 
    // load the map
    // and initialize initMap so JavaScript can read it and successfully do the callback in the script url
@@ -18,10 +30,37 @@ class App extends Component {
     window.initMap = this.initMap
   }
 
+  // get our food data from foursquare!
+  // list out all the objects we want from Foursquare
+  // using my api to pull data from the 3rd party site
+  // then use the axios to link Foursqaure to our app by passing the endPoint url and param objects
+  // once we have that information we're going to log it and pass the info into the state 'foodPlaces' above onto the map
+  // after all that is done, we render the map
+  // catch any errors
+  getFood = () => {
+    let endPoint = "https://api.foursquare.com/v2/venues/explore?"
+    let parameters = {
+      client_id: "J4H31X3T25IDXZF3IMI3A12WNTUDKZ43MGIWNGYJLFGJFLH4",
+        client_secret: "KPDF2NV5SL4UKISN24J1KJF13Q1F20WXKYURK2I1LJ5YIYCQ",
+        query: "food",
+        near: "Bushwick, NY",
+        v: "20182507"
+    }
+    axios.get(endPoint + new URLSearchParams(parameters))
+      .then(response => {
+        this.setState({
+          foodPlaces:response.data.response.groups[0].items
+        }, this.loadMap())
+      })
+      .catch(error => {
+        console.log("ERROR! " + error)
+      })
+  }
+
   // initialize the map so we can actually see it on screen
-  // variable 'myMap' for the Map element
+  // variable 'map' for the Map element
     initMap = () => {
-      let myMap = window.google.maps.Map(document.getElementById('map'), {
+      let map = window.google.maps.Map(document.getElementById('map'), {
         center: {lat: 40.703177, lng: -73.923904},
         zoom: 15
       });
