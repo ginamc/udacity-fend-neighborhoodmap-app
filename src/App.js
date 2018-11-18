@@ -3,7 +3,6 @@ import axios from 'axios'
 // axios downloaded as per Yahya Elharony's walkthrough -- specified in README
 // axios used to work with Foursquare API
 
-// import { load_google_maps } from './utils'
 
 import './App.css';
 
@@ -12,7 +11,15 @@ class App extends Component {
   // set the state for our locations and markers
   state = {
     foodPlaces: [],
-    // ADD markers: [],
+    markers: [],
+  }
+
+  // setting up the constructor for our props
+  constructor(props) {
+    super(props)
+    this.state = {
+      query: 'food'
+    }
   }
 
 
@@ -59,16 +66,45 @@ class App extends Component {
 
   // initialize the map so we can actually see it on screen
   // variable 'map' for the Map element
+  // create variable 'infowindow' for info about the biz
+  // loop over the state 'foodPlaces' to populate markers for the map
+  // and pass the biz info into the variable called 'infowindow'
+  // for each place, we want to dynamically create a marker
     initMap = () => {
       let map = window.google.maps.Map(document.getElementById('map'), {
         center: {lat: 40.703177, lng: -73.923904},
         zoom: 15
       });
 
+        let infowindow = new window.google.maps.InfoWindow()
+
+      this.state.foodPlaces.map(foodBiz => {
+        let contentString = `${foodBiz.venue.name}`
+        let marker = new window.google.maps.Marker({
+          position: {lat: foodBiz.venue.location.lat, lng: foodBiz.venue.location.lng},
+          map: map,
+          name: foodBiz.venue.name
+        });
+
+        // tying everything together in an event listener
+        // we change the content and whenever a marker is clicked, an modal pops open with the relevant information
+        marker.addListener('click', function() {
+          infowindow.setContent(contentString)
+          infowindow.open(map, marker);
+        });
+      });
     }
 
+    // here we loop through each marker and check that the query matches the input in our search bar
+    filterFood(query) {
+      this.markers.forEach(marker => {
+        console.log(marker);
 
-
+        marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
+          marker.setVisible(true) :
+          marker.setVisible(false)
+      });
+    }
 
     // RENDER THE DAMN THING
 
