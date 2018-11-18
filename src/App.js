@@ -96,7 +96,9 @@ class App extends Component {
         return ( 
           <main>
             <div id="map"></div>
-            <div id="sidebar"></div>
+            <div id="sidebar">
+              <input value={this.state.query} onChange={this.filterVenues}/>  
+            </div>
           </main>
         );
     }
