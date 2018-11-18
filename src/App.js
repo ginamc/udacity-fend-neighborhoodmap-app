@@ -79,8 +79,10 @@ class App extends Component {
           position: {lat: foodVenue.venue.location.lat, lng: foodVenue.venue.location.lng},
           map: map,
           name: foodVenue.venue.name
-        });
+        });        
         
+       
+
         // ties everything together in an event listener
         marker.addListener('click', function() {
         // change the content 
@@ -93,17 +95,21 @@ class App extends Component {
 
       // going to loop thru each marker and check that the query matches input in search bar
     filterFood(query) {
-      console.log(query);
+      this.markers.forEach(marker => {
+        console.log(marker);
+      });
+      
+      this.setState({ query });
     }
 
     render() {
         return ( 
-          <main>
+          <div>
             <div id="map"></div>
             <div id="sidebar">
               <input value={this.state.query} onChange={(e) => { this.filterFood(e.target.value) }}/>
             </div>
-          </main>
+          </div>
         );
     }
 }
