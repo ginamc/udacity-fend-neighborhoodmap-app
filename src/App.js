@@ -13,11 +13,10 @@ class App extends Component {
     state = {
         venueInfo: [],
         venuePins: []
+        
     }
 
-    
-
-    // create a constructor for our properties
+        // create a constructor for our properties
     constructor(props) {
         super(props)
         this.state = {
@@ -95,10 +94,12 @@ class App extends Component {
         });
     }
 
+
     
     // loop thru each marker and check that the query matches our input in search bar
-    filterFood(query) {
-      this.state.venuePins.forEach(locationMarker => {
+     filterFood(query) {
+      
+      this.venuePins.forEach(locationMarker => {
             console.log(locationMarker);
             locationMarker.name.toLowerCase().includes(query.toLowerCase()) === true ?
                 locationMarker.setVisible(true) :
@@ -107,7 +108,7 @@ class App extends Component {
 
         this.setState({ query });
       
-    }
+    } 
 
 
     render() {
