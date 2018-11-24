@@ -10,7 +10,7 @@ class App extends Component {
     //set the state for our food places and markers
     state = {
         foodPlaces: [],
-        markers: [],
+        markers: []
     }
 
     
@@ -96,7 +96,7 @@ class App extends Component {
     
     // loop thru each marker and check that the query matches our input in search bar
     filterFood(query) {
-
+      
      this.markers.forEach(marker => {
             console.log(marker);
             marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
@@ -108,6 +108,7 @@ class App extends Component {
       
     }
 
+
     render() {
         return ( 
           <div>
@@ -115,7 +116,7 @@ class App extends Component {
             <div id = "sidebar">
             <input value = { this.state.query }
             onChange = {
-                (e) => { this.filterFood(e.target.value) }}/> <br/> 
+                (e) => {this.filterFood(e.target.value)}}/> <br/> 
                 { this.state.foodVenue && this.state.foodVenue.length > 0 && this.state.foodVenue.map((foodVenue, index) => ( 
                   <div className = "foodplace-item"> { foodVenue.name } </div>
                 ))
