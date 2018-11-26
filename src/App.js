@@ -25,10 +25,7 @@ class App extends Component {
         };
 
         this.state = {
-            venueInfo: []
-        };
-
-        this.state = {
+            venueInfo: [],
             venuePins: []
         };
     }
@@ -124,13 +121,13 @@ class App extends Component {
         return ( <div>
             <div id = "map"></div>
             <div id = "sidebar" >
-                        <input value = { this.state.query }
-            onChange = {
-                (e) => { this.filterFood(e.target.value) }
-            }/> <br/> {
-                this.state.loadVenueInfo && this.state.loadVenueInfo.length > 0 && this.state.loadVenueInfo.map((loadVenueInfo, index) => ( <div className = "foodplace-item"> { loadVenueInfo.name } </div>
-                ))
-            }
+            <input type="text" 
+                    value = { this.state.query }
+                    onChange = {
+                        (e) => { this.filterFood(e.target.value) } }/><br/>
+                        {this.state.loadVenueInfo && this.state.loadVenueInfo.length > 0 && this.state.loadVenueInfo.map((loadVenueInfo, index) => ( <div className = "foodplace-item"> { loadVenueInfo.name } </div>
+                        ))
+                    }
             </div>
         </div>
     );
