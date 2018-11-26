@@ -12,7 +12,7 @@ class App extends Component {
     //set the state for our food places and venuePins
     state = {
         venueInfo: [],
-        // venuePins: []
+        venuePins: []
 
     }
 
@@ -22,7 +22,6 @@ class App extends Component {
         this.state = {
             query: '',
         };
-        this.venuePins = this.venuePins.bind(this)
     }
 
     //call our rendered rendered map
