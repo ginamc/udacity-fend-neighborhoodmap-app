@@ -126,8 +126,7 @@ class App extends Component {
         return ( <div>
             <div id = "map"></div>
             <div id = "sidebar" >
-            <input type="text" 
-                    value = { this.state.query }
+            <input  value = { this.state.query }
                     onChange = { this.filterFood} />
                        {/* (e) => { this.filterFood(e.target.value) } }/> */}
                        <br/>
