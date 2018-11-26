@@ -27,7 +27,7 @@ class App extends Component {
         };
 
 
-        this.filterFood = this.filterFood.bind(this);
+       // this.filterFood = this.filterFood.bind(this);
         
 /*
         this.state = {
