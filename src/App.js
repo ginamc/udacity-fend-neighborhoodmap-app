@@ -106,9 +106,9 @@ class App extends Component {
 
 
     // loop thru each marker and check that the query matches our input in search bar
-    filterFood(query) {
-
-        this.venuePins.forEach(locationMarker => {
+     filterFood(query) {
+        
+        this.state.venuePins.forEach(locationMarker => {
             console.log(locationMarker);
             locationMarker.name.toLowerCase().includes(query.toLowerCase()) === true ?
                 locationMarker.setVisible(true) :
