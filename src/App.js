@@ -25,6 +25,8 @@ class App extends Component {
             venueInfo: [],
             venuePins: []
         };
+
+        this.filterFood = this.filterFood.bind(this)
 /*
         this.state = {
             venueInfo: [],
@@ -109,7 +111,7 @@ class App extends Component {
      filterFood(query) {
         // THIS IS FUCKING UNDEFINED... WHAT?! 
         this.state.venuePins.forEach(locationMarker => {
-            console.log(locationMarker);
+            console.log(locationMarker, this);
             locationMarker.name.toLowerCase().includes(query.toLowerCase()) === true ?
                 locationMarker.setVisible(true) :
                 locationMarker.setVisible(false)
