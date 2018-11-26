@@ -107,7 +107,7 @@ class App extends Component {
 
     // loop thru each marker and check that the query matches our input in search bar
      filterFood(query) {
-        
+                
         this.state.venuePins.forEach(locationMarker => {
             console.log(locationMarker);
             locationMarker.name.toLowerCase().includes(query.toLowerCase()) === true ?
@@ -124,7 +124,7 @@ class App extends Component {
         return ( <div>
             <div id = "map"></div>
             <div id = "sidebar" >
-            <input value = { this.state.query }
+                        <input value = { this.state.query }
             onChange = {
                 (e) => { this.filterFood(e.target.value) }
             }/> <br/> {
