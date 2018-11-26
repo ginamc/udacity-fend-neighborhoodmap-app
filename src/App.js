@@ -12,16 +12,17 @@ class App extends Component {
     //set the state for our food places and venuePins
     state = {
         venueInfo: [],
-        venuePins: []
-        
+        // venuePins: []
+
     }
 
-        // create a constructor for our properties
+    // create a constructor for our properties
     constructor(props) {
         super(props)
         this.state = {
             query: '',
-        }
+        };
+        this.venuePins = this.venuePins.bind(this)
     }
 
     //call our rendered rendered map
@@ -78,7 +79,7 @@ class App extends Component {
 
         let venuePopup = new window.google.maps.InfoWindow()
         this.state.venueInfo.map(loadVenueInfo => {
-            let popupContents = `${loadVenueInfo.venue.name}`   // <-- change what goes into this variable 
+            let popupContents = `${loadVenueInfo.venue.name}` // <-- change what goes into this variable 
             let locationMarker = new window.google.maps.Marker({
                 position: { lat: loadVenueInfo.venue.location.lat, lng: loadVenueInfo.venue.location.lng },
                 map: venueMap,
@@ -95,11 +96,11 @@ class App extends Component {
     }
 
 
-    
+
     // loop thru each marker and check that the query matches our input in search bar
-     filterFood(query) {
-      
-      this.venuePins.forEach(locationMarker => {
+    filterFood(query) {
+
+        this.venuePins.forEach(locationMarker => {
             console.log(locationMarker);
             locationMarker.name.toLowerCase().includes(query.toLowerCase()) === true ?
                 locationMarker.setVisible(true) :
@@ -107,24 +108,28 @@ class App extends Component {
         });
 
         this.setState({ query });
-      
-    } 
+
+    }
 
 
     render() {
-        return ( 
-          <div>
-            <div id = "map" > </div>
-            <div id = "sidebar">
-            <input value = { this.state.query }
+        return ( <
+            div >
+            <
+            div id = "map" > < /div> <
+            div id = "sidebar" >
+            <
+            input value = { this.state.query }
             onChange = {
-                (e) => {this.filterFood(e.target.value)}}/> <br/> 
-                { this.state.loadVenueInfo && this.state.loadVenueInfo.length > 0 && this.state.loadVenueInfo.map((loadVenueInfo, index) => ( 
-                  <div className = "foodplace-item"> { loadVenueInfo.name } </div>
-                ))
+                (e) => { this.filterFood(e.target.value) }
             }
-            </div> 
-          </div>
+            /> <br/ > {
+                this.state.loadVenueInfo && this.state.loadVenueInfo.length > 0 && this.state.loadVenueInfo.map((loadVenueInfo, index) => ( <
+                    div className = "foodplace-item" > { loadVenueInfo.name } < /div>
+                ))
+            } <
+            /div>  < /
+            div >
         );
     }
 }
