@@ -123,10 +123,11 @@ class App extends Component {
             <div id = "sidebar" >
             <input type="text" 
                     value = { this.state.query }
-                    onChange = {
-                        (e) => { this.filterFood(e.target.value) } }/><br/>
+                    onChange = { this.filterFood } />
+                       {/* (e) => { this.filterFood(e.target.value) } }/> */}
+                       <br/>
                         {this.state.loadVenueInfo && this.state.loadVenueInfo.length > 0 && this.state.loadVenueInfo.map((loadVenueInfo, index) => ( <div className = "foodplace-item"> { loadVenueInfo.name } </div>
-                        ))
+                        )) 
                     }
             </div>
         </div>
