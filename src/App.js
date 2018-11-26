@@ -10,17 +10,26 @@ import './App.css';
 class App extends Component {
 
     //set the state for our food places and venuePins
-    state = {
+   /* state = {
         venueInfo: [],
         venuePins: []
 
     }
+    */
 
     // create a constructor for our properties
     constructor(props) {
         super(props)
         this.state = {
-            query: '',
+            query: ''
+        };
+
+        this.state = {
+            venueInfo: []
+        };
+
+        this.state = {
+            venuePins: []
         };
     }
 
@@ -123,7 +132,7 @@ class App extends Component {
                 ))
             }
             </div>
-    </div>
+        </div>
     );
     }
 }
