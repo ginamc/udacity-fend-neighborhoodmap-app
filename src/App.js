@@ -14,20 +14,27 @@ class App extends Component {
         venueInfo: [],
         venuePins: []
 
-    }
-    */
+    } */
+    
 
     // create a constructor for our properties
     constructor(props) {
         super(props)
         this.state = {
-            query: ''
+            query: '',
+            venueInfo: [],
+            venuePins: []
         };
 
+
+        this.filterFood = this.filterFood.bind(this);
+        
+/*
         this.state = {
             venueInfo: [],
             venuePins: []
         };
+        */
     }
 
     //call our rendered rendered map
@@ -123,7 +130,7 @@ class App extends Component {
             <div id = "sidebar" >
             <input type="text" 
                     value = { this.state.query }
-                    onChange = { this.venuePins } />
+                    onChange = { this.filterFood} />
                        {/* (e) => { this.filterFood(e.target.value) } }/> */}
                        <br/>
                         {this.state.loadVenueInfo && this.state.loadVenueInfo.length > 0 && this.state.loadVenueInfo.map((loadVenueInfo, index) => ( <div className = "foodplace-item"> { loadVenueInfo.name } </div>
