@@ -112,24 +112,19 @@ class App extends Component {
 
 
     render() {
-        return ( <
-            div >
-            <
-            div id = "map" > < /div> <
-            div id = "sidebar" >
-            <
-            input value = { this.state.query }
+        return ( <div>
+            <div id = "map"></div>
+            <div id = "sidebar" >
+            <input value = { this.state.query }
             onChange = {
                 (e) => { this.filterFood(e.target.value) }
-            }
-            /> <br/ > {
-                this.state.loadVenueInfo && this.state.loadVenueInfo.length > 0 && this.state.loadVenueInfo.map((loadVenueInfo, index) => ( <
-                    div className = "foodplace-item" > { loadVenueInfo.name } < /div>
+            }/> <br/> {
+                this.state.loadVenueInfo && this.state.loadVenueInfo.length > 0 && this.state.loadVenueInfo.map((loadVenueInfo, index) => ( <div className = "foodplace-item"> { loadVenueInfo.name } </div>
                 ))
-            } <
-            /div>  < /
-            div >
-        );
+            }
+            </div>
+    </div>
+    );
     }
 }
 
