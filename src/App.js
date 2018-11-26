@@ -10,12 +10,20 @@ import './App.css';
 class App extends Component {
 
     //set the state for our food places and venuePins
-   /* state = {
+    state = {
         venueInfo: [],
         venuePins: []
 
+<<<<<<< HEAD
     } */
     
+||||||| change onChange filterFood to venuePins
+    }
+    */
+=======
+    }
+    
+>>>>>>> master
 
     // create a constructor for our properties
     constructor(props) {
@@ -25,11 +33,17 @@ class App extends Component {
             venueInfo: [],
             venuePins: []
         };
+<<<<<<< HEAD
 
 
        // this.filterFood = this.filterFood.bind(this);
         
 /*
+||||||| change onChange filterFood to venuePins
+
+=======
+/*
+>>>>>>> master
         this.state = {
             venueInfo: [],
             venuePins: []
