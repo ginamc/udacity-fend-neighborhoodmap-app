@@ -4,7 +4,7 @@ import axios from 'axios'
 // axios used to work with Foursquare API
 
 // import MapDisplay from './components/MapDisplay'
-// import SideMenu from './components/SideMenu'
+// import MenuBar from './components/MenuBar'
 
 import './App.css';
 
@@ -110,7 +110,8 @@ class App extends Component {
                 map: venueMap,
                 animation: window.google.maps.Animation.DROP,
                 name: loadVenueInfo.venue.name,
-                city: loadVenueInfo.venue.location.city
+                address: loadVenueInfo.venue.location.address,
+                photo: loadVenueInfo.venue.photos
             });
 
             // tie everything together in an event listener
@@ -156,7 +157,7 @@ class App extends Component {
     // when button is clicked, check for a match, if it's true, the infowindow opens
         clickFood=(venueInfo) => {
             let marker = this.state.venuePins.filter(m => m.name === venueInfo.name)[0]
-            this.venuePopup.setContent(`${marker.name + " " + marker.city}`)
+            this.venuePopup.setContent(`${marker.name + "<br/> " + marker.address}`)
             this.map.setCenter(marker.position)
             this.venuePopup.open(this.state.map, marker)
         }
@@ -171,7 +172,7 @@ class App extends Component {
         // console.log(restaurants);
 
         return ( <div>
-            <div id = "map"></div>
+           <div id = "map"></div>
            <div id = "sidebar">
            <input placeholder = "search for food"
                     value = {this.state.query}
@@ -184,8 +185,6 @@ class App extends Component {
     );
     }
 }
-/* <div id = "sidebar" > */
-/* (e) => { this.filterFood(e.target.value) } }/> */
 
 // creating the map script function by
 // selecting the first instance of elements with the tag name 'script'
