@@ -4,40 +4,38 @@ import axios from 'axios'
 // axios used to work with Foursquare API
 
 // import MapDisplay from './components/MapDisplay'
+// import SideMenu from './components/SideMenu'
 
 import './App.css';
 
 class App extends Component {
 
     //set the state for our food places and venuePins
+    // setting the state to be empty array for each of below while info is fetched (food info, markers, search)
     state = {
         venueInfo: [],
-        venuePins: []
-
+        venuePins: [],
+        searchFood: []
     } 
     
 
     // create a constructor for our properties
+    // strictly managed the query, setting query to be an empty string to start
     constructor(props) {
         super(props)
         this.state = {
-            query: '',
-            venueInfo: [],
-            venuePins: []
+            query: ''
         };
-
-        this.filterFood = this.filterFood.bind(this)
-/*
-        this.state = {
-            venueInfo: [],
-            venuePins: []
-        };
-        */
     }
 
-    //call our rendered rendered map
+    // once the component mounts, we load the fetched venue (getting from Foursquare)
+    // once that loads, render the map
     // and invoke a function to get our food info
     componentDidMount() {
+        // check for errors when component mounts
+        window.gm_authFailure=()=> {
+            console.log("Error! Map couldn't load")
+        }
         this.getFsqPlaces()
     }
 
@@ -68,7 +66,8 @@ class App extends Component {
         axios.get(endPoint + new URLSearchParams(parameters))
             .then(response => {
                 this.setState({
-                    venueInfo: response.data.response.groups[0].items
+                    venueInfo: response.data.response.groups[0].items,
+                    searchFood: response.data.response.groups[0].items
                 }, this.loadFoodMap())
             })
             .catch(error => {
@@ -81,19 +80,37 @@ class App extends Component {
     // loop over our state (venueInfo) to populate venuePins onto the map
     // pass the venue info into the venuePopup variable and
     // for each place, dynamically create a marker
+    // used Google API lessons here
     initMap = () => {
         let venueMap = new window.google.maps.Map(document.getElementById('map'), {
             center: { lat: 40.703177, lng: -73.923904 },
             zoom: 15
         });
+        this.map = venueMap
 
         let venuePopup = new window.google.maps.InfoWindow()
+        this.venuePopup = new window.google.maps.InfoWindow()
+
+        // setting the state of the map and infoWindow
+        let allMarkers = []
+        this.setState ({
+            map: venueMap,
+            venuePopup: this.venuePopup
+        })
+
+        // looping over our venues array to create the markers and the information in the popup box
         this.state.venueInfo.map(loadVenueInfo => {
             let popupContents = `${loadVenueInfo.venue.name}` // <-- change what goes into this variable 
+            // the below markers are those that get returned based on the map, they're not all there
+            // if you want to change the markers do it here (from Google Map lessons; developer.google.com)
+            /* put in at line 111 >> icon: name of icon variable 
+             also can add location.city: name of city */
             let locationMarker = new window.google.maps.Marker({
                 position: { lat: loadVenueInfo.venue.location.lat, lng: loadVenueInfo.venue.location.lng },
                 map: venueMap,
-                name: loadVenueInfo.venue.name
+                animation: window.google.maps.Animation.DROP,
+                name: loadVenueInfo.venue.name,
+                city: loadVenueInfo.venue.location.city
             });
 
             // tie everything together in an event listener
@@ -102,43 +119,73 @@ class App extends Component {
                 venuePopup.setContent(popupContents)
                 venuePopup.open(venueMap, locationMarker);
             });
+
+            // updating allMarkers array with returned data
+            allMarkers.push(locationMarker)
         });
+
+        this.setState({
+            venuePins: allMarkers
+        })
+
+        this.setState({
+            filterFood: this.state.venues
+        })
     }
 
+    
 
-
-    // loop thru each marker and check that the query matches our input in search bar
+    // function that filters our marker and sidemenu list when something is typed into the search box
+    // 'let f' is updating the results based on what's in the search box
      filterFood(query) {
-        // THIS IS FUCKING UNDEFINED... WHAT?! 
+        let f = this.state.venueInfo.filter(loadVenueInfo => loadVenueInfo.venue.name.toLowerCase().includes(query.toLowerCase()))
+            console.log(this.state)
+        // showing or hiding map markers and list items depending on what's being searched
         this.state.venuePins.forEach(locationMarker => {
-            console.log(locationMarker, this);
+            console.log(locationMarker);
             locationMarker.name.toLowerCase().includes(query.toLowerCase()) === true ?
                 locationMarker.setVisible(true) :
                 locationMarker.setVisible(false)
         });
 
-        this.setState({ query });
+        this.setState({ filterFood: f, query });
 
     }
+
+    // when food venue button on side menu is clicked, this function triggers the map marker to open its infoWindow
+    // when button is clicked, check for a match, if it's true, the infowindow opens
+        clickFood=(venueInfo) => {
+            let marker = this.state.venuePins.filter(m => m.name === venueInfo.name)[0]
+            this.venuePopup.setContent(`${marker.name + " " + marker.city}`)
+            this.map.setCenter(marker.position)
+            this.venuePopup.open(this.state.map, marker)
+        }
+
+        
 
 
     render() {
+
+        let restaurants = (this.state.query) ?
+        this.state.filterFood:this.state.venueInfo;
+        // console.log(restaurants);
+
         return ( <div>
             <div id = "map"></div>
-            <div id = "sidebar" >
-            <input  value = { this.state.query }
-                    onChange = { this.filterFood} />
-                       {/* (e) => { this.filterFood(e.target.value) } }/> */}
-                       <br/>
-                        {this.state.loadVenueInfo && this.state.loadVenueInfo.length > 0 && this.state.loadVenueInfo.map((loadVenueInfo, index) => ( <div className = "foodplace-item"> { loadVenueInfo.name } </div>
+           <div id = "sidebar">
+           <input placeholder = "search for food"
+                    value = {this.state.query}
+                    onChange={(e)=>{this.filterFood(e.target.value)}}/><br/>
+                        {this.state.venueInfo && this.state.venueInfo.length > 0 && restaurants.map((loadVenueInfo, index) => ( <div key={index} className = "foodplace-item"> <button onClick={() => {this.clickFood(loadVenueInfo.venue)}}>{loadVenueInfo.venue.name} </button> </div>
                         )) 
                     }
             </div>
-        </div>
+            </div>
     );
     }
 }
-
+/* <div id = "sidebar" > */
+/* (e) => { this.filterFood(e.target.value) } }/> */
 
 // creating the map script function by
 // selecting the first instance of elements with the tag name 'script'
