@@ -34,7 +34,8 @@ class App extends Component {
     componentDidMount() {
         // check for errors when component mounts
         window.gm_authFailure=()=> {
-            console.log("Error! Map couldn't load")
+            alert('Error! The map could not be loaded')
+            console.log('Error! Map could not be loaded')
         }
         this.getFsqPlaces()
     }
@@ -100,7 +101,7 @@ class App extends Component {
 
         // looping over our venues array to create the markers and the information in the popup box
         this.state.venueInfo.map(loadVenueInfo => {
-            let popupContents = `${loadVenueInfo.venue.name}` // <-- change what goes into this variable 
+            let popupContents = `${loadVenueInfo.venue.name + "<br/>" + loadVenueInfo.venue.location.address + "<br/>" + loadVenueInfo.venue.location.crossStreet}`
             // the below markers are those that get returned based on the map, they're not all there
             // if you want to change the markers do it here (from Google Map lessons; developer.google.com)
             /* put in at line 111 >> icon: name of icon variable 
@@ -110,7 +111,7 @@ class App extends Component {
                 map: venueMap,
                 name: loadVenueInfo.venue.name,
                 address: loadVenueInfo.venue.location.address,
-                photo: loadVenueInfo.venue.photos,
+                crossStreet: loadVenueInfo.venue.location.crossStreet,
                 animation: window.google.maps.Animation.DROP
             });
 
@@ -157,7 +158,7 @@ class App extends Component {
     // when button is clicked, check for a match, if it's true, the infowindow opens
         clickFood=(venueInfo) => {
             let marker = this.state.venuePins.filter(m => m.name === venueInfo.name)[0]
-            this.venuePopup.setContent(`${marker.name + "<br/> " + marker.address}`)
+            this.venuePopup.setContent(`${marker.name + "<br/> " + marker.address + "<br/>" + marker.crossStreet}`)
             this.map.setCenter(marker.position)
             this.venuePopup.open(this.state.map, marker)
         }
