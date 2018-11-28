@@ -116,6 +116,17 @@ class App extends Component {
             });
 
             // tie everything together in an event listener
+            // add animation (from developers.google.com)
+            locationMarker.addListener('click', toggleBounce)
+
+            function toggleBounce() {
+                if(locationMarker.getAnimation() !== null) {
+                    locationMarker.setAnimation(null)
+                } else {
+                    locationMarker.setAnimation(window.google.maps.Animation.BOUNCE)
+                }
+            }
+
             // change the content, and on click, open the venuePopup with relevant info
             locationMarker.addListener('click', function() {
                 venuePopup.setContent(popupContents)
