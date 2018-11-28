@@ -3,7 +3,7 @@ import axios from 'axios'
 // axios downloaded as per Yahya Elharony's walkthrough -- specified in README
 // axios used to work with Foursquare API
 
-// import MapDisplay from './components/MapDisplay'
+import MapDisplay from './components/MapDisplay'
 // import MenuBar from './components/MenuBar'
 
 import './App.css';
@@ -108,10 +108,10 @@ class App extends Component {
             let locationMarker = new window.google.maps.Marker({
                 position: { lat: loadVenueInfo.venue.location.lat, lng: loadVenueInfo.venue.location.lng },
                 map: venueMap,
-                animation: window.google.maps.Animation.DROP,
                 name: loadVenueInfo.venue.name,
                 address: loadVenueInfo.venue.location.address,
-                photo: loadVenueInfo.venue.photos
+                photo: loadVenueInfo.venue.photos,
+                animation: window.google.maps.Animation.DROP
             });
 
             // tie everything together in an event listener
@@ -172,7 +172,7 @@ class App extends Component {
         // console.log(restaurants);
 
         return ( <div>
-           <div id = "map"></div>
+           <div id = "map"><MapDisplay /></div>
            <div id = "sidebar">
            <input placeholder = "search for food"
                     value = {this.state.query}
