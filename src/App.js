@@ -161,6 +161,10 @@ class App extends Component {
                 locationMarker.setVisible(false)
         });
 
+        if (f.length === 0) {
+            this.state.venuePopup.close();
+        }
+
         this.setState({ filterFood: f, query });
 
     }
@@ -181,21 +185,24 @@ class App extends Component {
 
         let restaurants = (this.state.query) ?
         this.state.filterFood:this.state.venueInfo;
-        // console.log(restaurants);
+        console.log(restaurants);
 
-        return ( <div>
+        return ( <main>
            <div id = "map"><MapDisplay /></div>
            <div id = "sidebar">
+           <h1 className="map-name">Stuff Your Face: Bushwick Edition</h1>
            <input placeholder = "search for food"
                     value = {this.state.query}
-                    onChange={(e)=>{this.filterFood(e.target.value)}}/><br/>
-                        {this.state.venueInfo && this.state.venueInfo.length > 0 && restaurants.map((loadVenueInfo, index) => ( <div key={index} className = "foodplace-item"> <button onClick={() => {this.clickFood(loadVenueInfo.venue)}}>{loadVenueInfo.venue.name} </button> </div>
-                        )) 
-                    }
+                    onChange={(e)=>{this.filterFood(e.target.value)}}/>
+                    <br/>
+                    {this.state.venueInfo && this.state.venueInfo.length > 0 && restaurants.map((loadVenueInfo, index) => ( <div tabIndex ="-1" key={index} className = "foodplace-item">
+                        <button onClick={() => {this.clickFood(loadVenueInfo.venue)}}>{loadVenueInfo.venue.name}</button> 
+                    </div>
+                    ))}
             </div>
-            </div>
+            </main>
     );
-    }
+  }
 }
 
 // creating the map script function by
