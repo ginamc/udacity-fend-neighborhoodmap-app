@@ -1,61 +1,52 @@
+# React Neighborhood Map App
 
-## Dependencies
-- Axios (https://github.com/axios/axios)
-- create react app (https://github.com/facebook/create-react-app)
-- Foursquare API
-- Google Maps API
+This project is a culmination of all the lessons learned in the Front End Web Developer Nanodegree. It assesed our abilities to create a web app using React while keeping in mind usability and accessibility, error handling, API requests, HTML and CSS, and more. This project was made completely from scratch, however, I did reference walkthroughs by coursemates to get me up and running.
+
+_This project was done as a requirement for [Udacity's Front End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) course._
+
+## Quick Links
+- [Start Here](#start-here)
+- [How to Use](#how-to-use)
+- [Resources](#resources)
+- [Dependencies](#dependencies)
+- [Contributing](#contributing)
+
+## Start Here
+To use this web app on your local machine:
+- download the file or clone the repository
+- run `npm install` in your console
+- run `npm start` to rev up the server and load map app
+
+Once you get the server running, you'll be able to see the web app in action.
+
+## How to Use
+This is a basic web app that shows popular food places in Bushwick (Brooklyn, NY). When you first open the app in your browser, you'll be presented with a handful of locations (marked on the map and as a list on the side).
+- Clicking on a map marker will open an window with information.
+- Clicking on a food place name in the side menu will open a window on the corresponding map marker.
+- Typing into the search bar will filter through locations
+
+The app is responsive in design and will work on all device sizes.
 
 ## Resources
-- Yahya waklthru (https://www.youtube.com/playlist?list=PLgOB68PvvmWCGNn8UMTpcfQEiITzxEEA1)
-- infowindows (https://developers.google.com/maps/documentation/javascript/infowindows)
-- markers (https://developers.google.com/maps/documentation/javascript/markers)
-- Ryan Waite walkthrough & guide (https://www.youtube.com/watch?v=LvQe7xrUh7I)
-- Ryan Waite script store (https://github.com/ryanwaite28/script-store/blob/master/js/react_resolve_google_maps.js)
-- Ryan's other video (https://www.youtube.com/watch?v=5J6fs_BlVC0)
+Due to the slight complex nature of the project, I relied heavily on various resources to get me through the project. They are:
+- [Udacity | Neighborhood Map - Project Explained](https://www.youtube.com/playlist?list=PLgOB68PvvmWCGNn8UMTpcfQEiITzxEEA1) by Yahya, YouTube
+- [Coding Session - Google Maps With React JS](https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be) by Ryan Waite, YouTube
+- [Tutorial Requests: FEND Project 7](https://www.youtube.com/watch?v=LvQe7xrUh7I) by Ryan Waite, YouTube
+- Ryan Waite's [github repo](https://github.com/ryanwaite28/udacity-fend-p7/blob/master/README.md)
+- [React Tutorial](https://reactjs.org/tutorial/tutorial.html)
+- [FEND P7 Walkthrough](https://www.youtube.com/watch?v=NVAVLCJwAAo&feature=youtu.be) by Doug Brown, YouTube
+- Doug Brown's [accompanying github repo](https://github.com/thefinitemonkey/fend-maps-walkthrough) to the video walkthru
+- Various QAs on StackOverflow
+- [Google Maps InfoWindows documentation](https://developers.google.com/maps/documentation/javascript/infowindows)
+- [Google Maps markers documentation](https://developers.google.com/maps/documentation/javascript/markers)
+- 1:1 with Xavier from Slack to address multiple TypeErrors (Thank you, Xavier!)
 
+## Dependencies
+- [Axios](https://github.com/axios/axios) for the Foursquare API
+- [create react app](https://github.com/facebook/create-react-app)
+- My Foursquare API
+- My Google Maps API
 
+## Contributing
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This repo is part of a project for Udacity's Front End Web Developer Nanodegree program As such, contributions will be closed.
